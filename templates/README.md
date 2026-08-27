@@ -10,4 +10,4 @@ Manual trigger → set a video URL → fetch the transcript (plain text) → sum
 
 Polls a channel's public RSS feed (`https://www.youtube.com/feeds/videos.xml?channel_id=...`) every hour, fetches a transcript for each new upload, and saves title + transcript to a Notion database. Find the channel ID on the channel's About page or in the page source (`"channelId"`).
 
-Both workflows need a Fetchworks API credential — your Apify token from [console.apify.com/settings/integrations](https://console.apify.com/settings/integrations). Pricing: $5 per 1,000 transcripts, only delivered transcripts billed ([actor page](https://apify.com/fetchworks/youtube-transcript-scraper)).
+Both workflows need a Fetchworks API credential — your Apify token from [console.apify.com/settings/integrations](https://console.apify.com/settings/integrations). Pricing: $2 per 1,000 transcripts, only delivered transcripts billed ([actor page](https://apify.com/fetchworks/youtube-transcript-scraper)).
