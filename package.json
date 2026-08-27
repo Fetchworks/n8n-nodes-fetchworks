@@ -1,0 +1,54 @@
+{
+  "name": "n8n-nodes-fetchworks",
+  "version": "0.1.0",
+  "description": "n8n community node for YouTube transcripts — segments, plain text, SRT, VTT from videos, channels, playlists, and search, via the Fetchworks YouTube Transcript Scraper on Apify",
+  "keywords": [
+    "n8n-community-node-package",
+    "youtube",
+    "transcript",
+    "captions",
+    "subtitles",
+    "apify"
+  ],
+  "license": "MIT",
+  "author": "Fetchworks",
+  "homepage": "https://apify.com/fetchworks/youtube-transcript-scraper",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fetchworks/n8n-nodes-fetchworks.git"
+  },
+  "engines": {
+    "node": ">=20.15"
+  },
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && node scripts/copy-assets.mjs",
+    "dev": "tsc --watch",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": true,
+    "credentials": [
+      "dist/credentials/FetchworksApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/FetchworksYoutubeTranscripts/FetchworksYoutubeTranscripts.node.js"
+    ]
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^8.20.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "jsonc-eslint-parser": "^3.3.0",
+    "n8n-workflow": "^1.70.0",
+    "typescript": "^5.7.2"
+  }
+}

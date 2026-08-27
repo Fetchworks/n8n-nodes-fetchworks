@@ -1,0 +1,81 @@
+{
+  "name": "New channel uploads → transcript → Notion",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [{ "mode": "everyHour" }]
+        },
+        "feedUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=REPLACE_WITH_CHANNEL_ID"
+      },
+      "id": "6b2f7d9e-0001-4c7f-8d2b-000000000001",
+      "name": "New channel upload (RSS)",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "operation": "getTranscripts",
+        "videoUrls": "={{ $json.link }}",
+        "options": {
+          "outputFormats": ["text"]
+        }
+      },
+      "id": "6b2f7d9e-0002-4c7f-8d2b-000000000002",
+      "name": "YouTube Transcripts (Fetchworks)",
+      "type": "n8n-nodes-fetchworks.fetchworksYoutubeTranscripts",
+      "typeVersion": 1,
+      "position": [220, 0],
+      "credentials": {
+        "fetchworksApi": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID",
+          "name": "Fetchworks API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "REPLACE_WITH_YOUR_DATABASE_ID",
+          "mode": "list"
+        },
+        "title": "={{ $json.metadata?.title || $json.videoId }}",
+        "blockUi": {
+          "blockValues": [
+            {
+              "type": "paragraph",
+              "textContent": "={{ ($json.text || 'No transcript: ' + $json.status).slice(0, 1990) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6b2f7d9e-0003-4c7f-8d2b-000000000003",
+      "name": "Save to Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [440, 0],
+      "credentials": {
+        "notionApi": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID",
+          "name": "Notion API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "New channel upload (RSS)": {
+      "main": [[{ "node": "YouTube Transcripts (Fetchworks)", "type": "main", "index": 0 }]]
+    },
+    "YouTube Transcripts (Fetchworks)": {
+      "main": [[{ "node": "Save to Notion", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
