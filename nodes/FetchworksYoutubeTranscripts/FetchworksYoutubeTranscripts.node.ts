@@ -6,7 +6,7 @@ import type {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { NodeApiError, NodeOperationError, sleep } from 'n8n-workflow';
+import { NodeApiError, NodeConnectionTypes, NodeOperationError, sleep } from 'n8n-workflow';
 
 const ACTOR = 'fetchworks~youtube-transcript-scraper';
 const BASE_URL = 'https://api.apify.com';
@@ -20,7 +20,7 @@ export class FetchworksYoutubeTranscripts implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'YouTube Transcripts (Fetchworks)',
 		name: 'fetchworksYoutubeTranscripts',
-		icon: 'file:fetchworks.svg',
+		icon: { light: 'file:fetchworks.svg', dark: 'file:fetchworks.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
@@ -29,8 +29,8 @@ export class FetchworksYoutubeTranscripts implements INodeType {
 		defaults: {
 			name: 'YouTube Transcripts (Fetchworks)',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		usableAsTool: true,
 		credentials: [
 			{
@@ -246,7 +246,10 @@ export class FetchworksYoutubeTranscripts implements INodeType {
 					});
 					continue;
 				}
-				throw error;
+				if (error instanceof NodeApiError || error instanceof NodeOperationError) {
+					throw error;
+				}
+				throw new NodeOperationError(this.getNode(), error as Error, { itemIndex: i });
 			}
 		}
 

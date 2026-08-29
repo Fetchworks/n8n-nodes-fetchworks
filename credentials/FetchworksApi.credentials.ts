@@ -2,6 +2,7 @@ import type {
 	IAuthenticateGeneric,
 	ICredentialTestRequest,
 	ICredentialType,
+	Icon,
 	INodeProperties,
 } from 'n8n-workflow';
 
@@ -9,6 +10,8 @@ export class FetchworksApi implements ICredentialType {
 	name = 'fetchworksApi';
 
 	displayName = 'Fetchworks API';
+
+	icon: Icon = { light: 'file:fetchworks.svg', dark: 'file:fetchworks.svg' };
 
 	documentationUrl = 'https://apify.com/fetchworks/youtube-transcript-scraper';
 
