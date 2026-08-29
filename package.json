@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-fetchworks",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "n8n community node for YouTube transcripts — segments, plain text, SRT, VTT from videos, channels, playlists, and search, via the Fetchworks YouTube Transcript Scraper on Apify",
   "keywords": [
     "n8n-community-node-package",

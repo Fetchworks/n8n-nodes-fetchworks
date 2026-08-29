@@ -5,7 +5,9 @@ import { fileURLToPath } from "node:url";
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const icons = [
   "nodes/FetchworksYoutubeTranscripts/fetchworks.svg",
+  "nodes/FetchworksYoutubeTranscripts/fetchworks.dark.svg",
   "credentials/fetchworks.svg",
+  "credentials/fetchworks.dark.svg",
 ];
 
 for (const icon of icons) {

@@ -20,7 +20,7 @@ export class FetchworksYoutubeTranscripts implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'YouTube Transcripts (Fetchworks)',
 		name: 'fetchworksYoutubeTranscripts',
-		icon: { light: 'file:fetchworks.svg', dark: 'file:fetchworks.svg' },
+		icon: { light: 'file:fetchworks.svg', dark: 'file:fetchworks.dark.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
@@ -246,10 +246,9 @@ export class FetchworksYoutubeTranscripts implements INodeType {
 					});
 					continue;
 				}
-				if (error instanceof NodeApiError || error instanceof NodeOperationError) {
-					throw error;
-				}
-				throw new NodeOperationError(this.getNode(), error as Error, { itemIndex: i });
+				throw error instanceof NodeApiError || error instanceof NodeOperationError
+					? error
+					: new NodeOperationError(this.getNode(), error as Error, { itemIndex: i });
 			}
 		}
 

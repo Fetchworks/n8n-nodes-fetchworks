@@ -11,7 +11,7 @@ export class FetchworksApi implements ICredentialType {
 
 	displayName = 'Fetchworks API';
 
-	icon: Icon = { light: 'file:fetchworks.svg', dark: 'file:fetchworks.svg' };
+	icon: Icon = { light: 'file:fetchworks.svg', dark: 'file:fetchworks.dark.svg' };
 
 	documentationUrl = 'https://apify.com/fetchworks/youtube-transcript-scraper';
 
