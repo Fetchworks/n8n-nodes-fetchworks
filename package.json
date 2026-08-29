@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-fetchworks",
   "version": "0.1.1",
-  "description": "n8n community node for YouTube transcripts — segments, plain text, SRT, VTT from videos, channels, playlists, and search, via the Fetchworks YouTube Transcript Scraper on Apify",
+  "description": "n8n community node for YouTube transcripts \u2014 segments, plain text, SRT, VTT from videos, channels, playlists, and search, via the Fetchworks YouTube Transcript Scraper on Apify",
   "keywords": [
     "n8n-community-node-package",
     "youtube",
@@ -15,7 +15,7 @@
   "homepage": "https://apify.com/fetchworks/youtube-transcript-scraper",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fetchworks/n8n-nodes-fetchworks.git"
+    "url": "git+https://github.com/Fetchworks/n8n-nodes-fetchworks.git"
   },
   "engines": {
     "node": ">=20.15"
